@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maturitní četba</title>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+    <header>
+        <h1>Čtenářský deník</h1>
+        <div class="subtitle">Moje příprava na maturitu z češtiny</div>
+    </header>
+    
+    <div id="file-list">
+        <ul id="files"></ul>
+    </div>
+
+    <script>
+        fetch('/api/files')
+            .then(response => response.json())
+            .then(files => {
+                const fileList = document.getElementById('files');
+                files.forEach(file => {
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = `/rozbory/${file}`;
+                    
+                    // Parse filename e.g. "01_Moliere_Lakomec.html"
+                    let author = "Neznámý";
+                    let title = file.replace('.html', '');
+                    
+                    const parts = title.split('_');
+                    if (parts.length >= 3) {
+                        // Skip the first part (number)
+                        author = parts[1].replace(/-/g, ' ');
+                        title = parts.slice(2).join(' ').replace(/-/g, ' ');
+                    } else if (parts.length === 2) {
+                        author = parts[0];
+                        title = parts[1].replace(/-/g, ' ');
+                    }
+                    
+                    link.innerHTML = `<span class="author">${author}</span><span class="title">${title}</span>`;
+                    
+                    listItem.appendChild(link);
+                    fileList.appendChild(listItem);
+                });
+            });
+    </script>
+</body>
+</html>
