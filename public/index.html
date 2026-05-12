@@ -13,39 +13,130 @@
     </header>
     
     <div id="file-list">
-        <ul id="files"></ul>
+        <ul id="files">
+            <li>
+                <a href="/rozbory/01_Moliere_Lakomec.html">
+                    <span class="author">Moliere</span>
+                    <span class="title">Lakomec</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/02_Sofokles_Kral_Oidipus.html">
+                    <span class="author">Sofokles</span>
+                    <span class="title">Kral Oidipus</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/03_Doyle_Pes_Baskervillsky.html">
+                    <span class="author">Doyle</span>
+                    <span class="title">Pes Baskervillsky</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/04_Havlicek_Kral_Lavra.html">
+                    <span class="author">Havlicek</span>
+                    <span class="title">Kral Lavra</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/05_Mrstikove_Marysa.html">
+                    <span class="author">Mrstikove</span>
+                    <span class="title">Marysa</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/06_Bradbury_451_Fahrenheita.html">
+                    <span class="author">Bradbury</span>
+                    <span class="title">451 Fahrenheita</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/07_Fitzgerald_Velky_Gatsby.html">
+                    <span class="author">Fitzgerald</span>
+                    <span class="title">Velky Gatsby</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/08_Hemingway_Starec_a_more.html">
+                    <span class="author">Hemingway</span>
+                    <span class="title">Starec a more</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/09_Kafka_Promena.html">
+                    <span class="author">Kafka</span>
+                    <span class="title">Promena</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/10_Orwell_1984.html">
+                    <span class="author">Orwell</span>
+                    <span class="title">1984</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/11_Orwell_Farma_zvirat.html">
+                    <span class="author">Orwell</span>
+                    <span class="title">Farma zvirat</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/12_Steinbeck_O_mysich_a_lidech.html">
+                    <span class="author">Steinbeck</span>
+                    <span class="title">O mysich a lidech</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/13_Capek_Bila_nemoc.html">
+                    <span class="author">Capek</span>
+                    <span class="title">Bila nemoc</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/14_Capek_RUR.html">
+                    <span class="author">Capek</span>
+                    <span class="title">RUR</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/15_Dyk_Krysar.html">
+                    <span class="author">Dyk</span>
+                    <span class="title">Krysar</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/16_Fuks_Spalovac_mrtvol.html">
+                    <span class="author">Fuks</span>
+                    <span class="title">Spalovac mrtvol</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/17_Hrabal_Ostre_sledovane_vlaky.html">
+                    <span class="author">Hrabal</span>
+                    <span class="title">Ostre sledovane vlaky</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/18_Hrabal_Postriziny.html">
+                    <span class="author">Hrabal</span>
+                    <span class="title">Postriziny</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/19_Jirotka_Saturnin.html">
+                    <span class="author">Jirotka</span>
+                    <span class="title">Saturnin</span>
+                </a>
+            </li>
+            <li>
+                <a href="/rozbory/20_Seifert_Maminka.html">
+                    <span class="author">Seifert</span>
+                    <span class="title">Maminka</span>
+                </a>
+            </li>
+        </ul>
     </div>
 
-    <script>
-        fetch('/api/files')
-            .then(response => response.json())
-            .then(files => {
-                const fileList = document.getElementById('files');
-                files.forEach(file => {
-                    const listItem = document.createElement('li');
-                    const link = document.createElement('a');
-                    link.href = `/rozbory/${file}`;
-                    
-                    // Parse filename e.g. "01_Moliere_Lakomec.html"
-                    let author = "Neznámý";
-                    let title = file.replace('.html', '');
-                    
-                    const parts = title.split('_');
-                    if (parts.length >= 3) {
-                        // Skip the first part (number)
-                        author = parts[1].replace(/-/g, ' ');
-                        title = parts.slice(2).join(' ').replace(/-/g, ' ');
-                    } else if (parts.length === 2) {
-                        author = parts[0];
-                        title = parts[1].replace(/-/g, ' ');
-                    }
-                    
-                    link.innerHTML = `<span class="author">${author}</span><span class="title">${title}</span>`;
-                    
-                    listItem.appendChild(link);
-                    fileList.appendChild(listItem);
-                });
-            });
-    </script>
+    
 </body>
 </html>
